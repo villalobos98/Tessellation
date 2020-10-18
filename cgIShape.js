@@ -23,29 +23,31 @@ function makeCube (subdivisions)  {
     console.log(subdivisions)
 
 
-    for(var row = -subdivisions; row < subdivisions; row++){
-        for(var col = -subdivisions; col < subdivisions; col++){
+    for(var row = -subdivisions; row < subdivisions; row+=2){
+        for(var col = -subdivisions; col < subdivisions; col+=2){
                     //Point a in the triangle
                     vertexOne[0] = scalingFactor * (row/subdivisions)
                     vertexOne[1] = scalingFactor * (col/subdivisions)
-                    vertexThree[2] = scalingFactor
+                    vertexOne[2] = scalingFactor
 
                     //Point b in the triangle
-                    vertexTwo[0] = scalingFactor * (row/subdivisions)
-                    vertexTwo[1] = scalingFactor * (col/subdivisions)
+                    vertexTwo[0] = scalingFactor * (row/subdivisions) + row/subdivisions
+                    vertexTwo[1] = scalingFactor * (col/subdivisions) + col/subdivisions
                     vertexTwo[2] = scalingFactor
 
                     //Point c in the triangle
-                    vertexThree[0] = scalingFactor * (row/subdivisions)
-                    vertexTwo[1] = scalingFactor * (col/subdivisions)
-                    vertexTwo[2] = scalingFactor
+                    vertexThree[0] = scalingFactor * (row/subdivisions) - row/subdivisions
+                    vertexThree[1] = scalingFactor * (col/subdivisions) - col/subdivisions
+                    vertexThree[2] = scalingFactor
+
+                    addTriangle(vertexOne[0],vertexOne[1],vertexOne[2],vertexTwo[0],vertexTwo[1],vertexTwo[2],vertexThree[0],vertexThree[1], vertexThree[2])
 
        }
     }
 
 
-    addTriangle(x,y,z,-x,-y,-z, x,-y, -z)
-    addTriangle()
+    // addTriangle(x,y,z,-x,-y,-z, x,-y, -z)
+    // addTriangle()
 
 }
 

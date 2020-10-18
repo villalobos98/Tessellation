@@ -16,12 +16,36 @@ function makeCube (subdivisions)  {
     //Compute the triangular tesselation of one face
 
     //The cube face
-    vertexOne = -1.0, -1.0,  1.0
-    vertexTwo =  1.0, -1.0,  1.0
-    vertexThree = 1.0,  1.0,  1.0
-    vertexFour = -1.0,  1.0,  1.0
-    
-    
+    vertexOne = [-1.0, -1.0,  0.5]
+    vertexTwo =  [1.0, -1.0,  0.5]
+    vertexThree = [1.0,  1.0,  0.5]
+    vertexFour = [-1.0,  1.0,  0.5]
+    console.log(subdivisions)
+
+
+    for(var row = -subdivisions; row < subdivisions; row++){
+        for(var col = -subdivisions; col < subdivisions; col++){
+                    //Point a in the triangle
+                    vertexOne[0] = scalingFactor * (row/subdivisions)
+                    vertexOne[1] = scalingFactor * (col/subdivisions)
+                    vertexThree[2] = scalingFactor
+
+                    //Point b in the triangle
+                    vertexTwo[0] = scalingFactor * (row/subdivisions)
+                    vertexTwo[1] = scalingFactor * (col/subdivisions)
+                    vertexTwo[2] = scalingFactor
+
+                    //Point c in the triangle
+                    vertexThree[0] = scalingFactor * (row/subdivisions)
+                    vertexTwo[1] = scalingFactor * (col/subdivisions)
+                    vertexTwo[2] = scalingFactor
+
+       }
+    }
+
+
+    addTriangle(x,y,z,-x,-y,-z, x,-y, -z)
+    addTriangle()
 
 }
 

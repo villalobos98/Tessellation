@@ -5,23 +5,12 @@
 //subdivisions
 //
 function makeCube (subdivisions)  {
-    
-    // fill in your code here.
-    // delete the code below first.
-    var x = 0.5
-    var y = 0.5
-    var z = 0.5
+
     var scalingFactor = 0.5
-
-    //Compute the triangular tesselation of one face
-
     //The cube face
     vertexOne = [-1.0, -1.0,  0.5]
     vertexTwo =  [1.0, -1.0,  0.5]
     vertexThree = [1.0,  1.0,  0.5]
-    vertexFour = [-1.0,  1.0,  0.5]
-    console.log(subdivisions)
-
 
     for(var row = -subdivisions; row < subdivisions; row+=2){
         for(var col = -subdivisions; col < subdivisions; col+=2){
@@ -31,23 +20,87 @@ function makeCube (subdivisions)  {
                     vertexOne[2] = scalingFactor
 
                     //Point b in the triangle
-                    vertexTwo[0] = scalingFactor * (row/subdivisions) + row/subdivisions
-                    vertexTwo[1] = scalingFactor * (col/subdivisions) + col/subdivisions
+                    vertexTwo[0] = scalingFactor * ((row + 2)/subdivisions)
+                    vertexTwo[1] = scalingFactor * (col/subdivisions)
                     vertexTwo[2] = scalingFactor
 
                     //Point c in the triangle
-                    vertexThree[0] = scalingFactor * (row/subdivisions) - row/subdivisions
-                    vertexThree[1] = scalingFactor * (col/subdivisions) - col/subdivisions
+                    vertexThree[0] = scalingFactor * (row/subdivisions)
+                    vertexThree[1] = scalingFactor * ((col + 2)/subdivisions) 
                     vertexThree[2] = scalingFactor
+          
+                    addTriangle(vertexOne[0],vertexOne[1],vertexOne[2],
+                        vertexTwo[0],vertexTwo[1],vertexTwo[2],
+                        vertexThree[0],vertexThree[1], vertexThree[2])
 
-                    addTriangle(vertexOne[0],vertexOne[1],vertexOne[2],vertexTwo[0],vertexTwo[1],vertexTwo[2],vertexThree[0],vertexThree[1], vertexThree[2])
+                    addTriangle(vertexThree[0],vertexThree[1], -vertexThree[2],
+                        vertexTwo[0],vertexTwo[1], -vertexTwo[2],
+                        vertexOne[0],vertexOne[1], -vertexOne[2])
+                    
+                    
+                    vertexOne[0] = vertexTwo[0]
+                    vertexOne[1] = vertexThree[1]
+                    vertexOne[2] = scalingFactor
+    
 
+                    addTriangle(vertexOne[0],vertexOne[1],vertexOne[2],
+                        vertexThree[0],vertexThree[1],vertexThree[2],
+                        vertexTwo[0],vertexTwo[1], vertexTwo[2])
+                    
+                    addTriangle(vertexOne[0],vertexOne[1], -vertexOne[2],
+                        vertexTwo[0],vertexTwo[1], -vertexTwo[2],
+                        vertexThree[0],vertexThree[1], -vertexThree[2])
        }
     }
 
 
-    // addTriangle(x,y,z,-x,-y,-z, x,-y, -z)
-    // addTriangle()
+    for(var row = -subdivisions; row < subdivisions; row+=2){
+        for(var col = -subdivisions; col < subdivisions; col+=2){
+                    //Point a in the triangle
+                    vertexOne[0] = scalingFactor * (col/subdivisions)
+                    vertexOne[1] = scalingFactor 
+                    vertexOne[2] = scalingFactor * (row/subdivisions)
+
+                    //Point b in the triangle
+                    vertexTwo[0] = scalingFactor * ((col)/subdivisions)
+                    vertexTwo[1] = scalingFactor 
+                    vertexTwo[2] = scalingFactor * ((row  + 2)/subdivisions)
+
+                    //Point c in the triangle
+                    vertexThree[0] = scalingFactor * ((col + 2)/subdivisions)
+                    vertexThree[1] = scalingFactor 
+                    vertexThree[2] = scalingFactor * (row/subdivisions) 
+          
+                    addTriangle(vertexOne[0],vertexOne[1],vertexOne[2],
+                        vertexTwo[0],vertexTwo[1],vertexTwo[2],
+                        vertexThree[0],vertexThree[1], vertexThree[2])
+
+                    addTriangle(vertexThree[0], -vertexThree[1], vertexThree[2],
+                        vertexTwo[0], -vertexTwo[1], vertexTwo[2],
+                        vertexOne[0], -vertexOne[1], vertexOne[2])
+                    
+                    // break
+                    
+                    vertexOne[0] = vertexThree[0]
+                    vertexOne[1] = scalingFactor
+                    vertexOne[2] = vertexTwo[2]
+    
+
+                    addTriangle(vertexOne[0],vertexOne[1],vertexOne[2],
+                        vertexThree[0],vertexThree[1],vertexThree[2],
+                        vertexTwo[0],vertexTwo[1], vertexTwo[2])
+                    
+                    addTriangle(vertexOne[0], -vertexOne[1], vertexOne[2],
+                        vertexTwo[0], -vertexTwo[1], vertexTwo[2],
+                        vertexThree[0], -vertexThree[1], vertexThree[2])
+       
+       }
+    }
+
+
+   
+
+
 
 }
 

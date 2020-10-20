@@ -99,12 +99,12 @@ function makeCube (subdivisions)  {
         for(var col = -subdivisions; col < subdivisions; col+=2){
                     //Point a in the triangle
                     vertexOne[0] = scalingFactor 
-                    vertexOne[1] = scalingFactor * (col/subdivisions)
-                    vertexOne[2] = scalingFactor * (row/subdivisions)
+                    vertexOne[1] = scalingFactor * ((col) /subdivisions)
+                    vertexOne[2] = scalingFactor * ((row + 2)/subdivisions)
 
                     //Point b in the triangle
                     vertexTwo[0] = scalingFactor
-                    vertexTwo[1] = scalingFactor  * ((col + 2)/subdivisions)
+                    vertexTwo[1] = scalingFactor  * ((col)/subdivisions)
                     vertexTwo[2] = scalingFactor * ((row)/subdivisions)
 
                     //Point c in the triangle
@@ -128,17 +128,11 @@ function makeCube (subdivisions)  {
                         vertexThree[0],vertexThree[1],vertexThree[2],
                         vertexTwo[0],vertexTwo[1], vertexTwo[2])
                     
-                    // addTriangle(-vertexOne[0], vertexOne[1], vertexOne[2],
-                    //     -vertexTwo[0], vertexTwo[1], vertexTwo[2],
-                    //     -vertexThree[0], vertexThree[1], vertexThree[2])
-       
+                    addTriangle(-vertexOne[0], vertexOne[1], vertexOne[2],
+                        -vertexTwo[0], vertexTwo[1], vertexTwo[2],
+                        -vertexThree[0], vertexThree[1], vertexThree[2])
        }
     }
-
-   
-
-
-
 }
 
 

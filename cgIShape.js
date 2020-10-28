@@ -144,7 +144,74 @@ function makeCube (subdivisions)  {
 //heightdivision.
 //
 function makeCylinder (radialdivision,heightdivision){
-    // fill in your code here.
+
+    // this will be used to calculate the normal
+    radiusTop = 1;
+    radiusBottom = 1;
+    height = 1;
+
+    radialSegments = Math.floor( radialdivision );
+    heightSegments = Math.floor( heightdivision );
+
+    openEnded = false;
+    thetaStart = 0.0;
+    thetaLength = Math.PI * 2;
+
+    //arrays
+    const indices = [];
+    const vertices = [];
+    const normals = [];
+    const cross = [];
+
+
+    function generateTopCylinder(top){
+            const centerIndexStart = index;
+
+			const uv = new Vector2();
+			const vertex = new Vector3();
+			let groupCount = 0;
+			const radius = radiusTop;
+            const sign = 1;
+
+             // we must generate a center vertex per face/segment
+
+                for ( let x = 1; x <= radialSegments; x ++ ) {
+
+                    // vertex
+                    vertices.push( 0, halfHeight * sign, 0 );
+                    // normal
+                    normals.push( 0, sign, 0 );
+                    // uv
+                    uvs.push( 0.5, 0.5 );
+                    // increase index
+                    index ++;
+                }
+
+    }
+
+    function generateTorso(){
+        const normal = new Vector3();
+        const vertex = new Vector3();
+        let count = 0;
+        const slope = ( radiusTop - radiusBottom ) + radiusTop;
+        for(var i = 0; i < heightSegments; i++){
+            const row = [];
+            const v = i/heightSegments;
+            const radius = v * (radiusBottom - radiusTop) + radiusTop;
+            for ( var j = 0; j < radialSegments; j++){
+                const u = j/radialSegments;
+                const theta = u *thetaLength + thetaStart;
+                const sinTheta = Math.sin(theta);
+                const cosTheta = Math.cos(theta);
+
+                vertex.x = radius * sinTheta;
+                vertex.y = v * height + halfheight;
+            }
+        }
+
+
+    }
+
 }
 
 
